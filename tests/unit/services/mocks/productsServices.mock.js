@@ -20,7 +20,19 @@ const productId = [[
   }
 ]];
 
+const insertedProduct = {
+  "id": 3,
+  "name": "Escudo do Capitão América"
+}
+
+const insertProduct = {
+  "name": "pc da Gabriela"
+}
+
+
 module.exports = {
   allProducts,
   productId,
+  insertProduct,
+  insertedProduct,
 }

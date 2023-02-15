@@ -20,7 +20,21 @@ const productId = [[
   }
 ]];
 
+const insertedProduct =
+  {
+    "id": 4,
+    "name": "Martelo de Zeus"
+  }
+;
+
+const insert =
+  {
+    "name": "Martelo de Zeus"
+  }
+;
 module.exports = {
   allProducts,
   productId,
+  insertedProduct,
+  insert,
 }

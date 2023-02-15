@@ -20,7 +20,12 @@ const productId = [[
   }
 ]];
 
+const insertProduct = {
+  "name": "newProduct"
+}
+
 module.exports = {
   allProducts,
   productId,
+  insertProduct,
 }

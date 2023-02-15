@@ -7,7 +7,7 @@ chai.use(sinonChai);
 
 const { productsServices } = require('../../../src/services');
 const { productsControllers } = require('../../../src/controllers');
-const { allProducts, productId } = require('./mocks/productsControllers.mock');
+const { allProducts, productId, insertedProduct, insert } = require('./mocks/productsControllers.mock');
 
 describe('Teste de unidade do productsController', function () {
   describe('Listando todos os produtos', function () {
@@ -98,6 +98,37 @@ describe('Teste de unidade do productsController', function () {
       // Avaliamos se chamou `res.status` com o valor 404
       expect(res.status).to.have.been.calledWith(404);
       // Avaliamos se chamou `res.status` com a mensagem esperada
+      expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
+    });
+  });
+
+  describe('Testa a camada controller para a função "insertProduct"', function () {
+    it('Faz a inserção de um novo produto', async function () {
+      const req = { body: insert };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsServices, 'insertProduct').resolves({ type: null, message: insertedProduct });
+
+      await productsControllers.insertProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith(insertedProduct);
+    });
+
+    it('Tenta fazer a inserção de novo produto sem sucesso', async function () {
+      const req = { body: insert };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsServices, 'insertProduct').resolves({ type: 404, message: 'Product not found' });
+
+      await productsControllers.insertProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
       expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
     });
   });
