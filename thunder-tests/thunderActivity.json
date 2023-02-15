@@ -22,7 +22,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-02-14T22:21:57.503Z",
-    "modified": "2023-02-15T12:50:30.700Z",
+    "modified": "2023-02-15T15:00:22.585Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -32,7 +32,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"name\": \"ProdutoX\"\n}",
+      "raw": "{\n \"name\": \"cde\"\n}",
       "form": []
     },
     "tests": []
