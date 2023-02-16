@@ -1,12 +1,28 @@
 const { salesModels } = require('../models');
+const { validateProductId } = require('./validations/validationSalesService');
 
 const insertProductSale = async (product) => {
-    await Promise.all(product.map(async (item) => salesModels.insertProduct(item)));
+  // try {
+  const validate = await validateProductId(product);
+  // console.log('================= VALIDATE:', validate);
+  if (validate) {
+    // console.log('================= SERVICE');
 
-  await salesModels.insertProduct(product);
-  const lastSale = await salesModels.getAll();
+    const salesId = await salesModels.insertProduct(product);
+    const result = {
+      id: salesId,
+      itemsSold:
+        product,
+    };
 
-   return { type: null, message: lastSale[lastSale.length - 1] };
+    return { type: null, message: result };
+  }
+
+  console.log('================= FAIL');
+  return { type: 404, message: 'Product not found' };
+
+  // } catch (err) {
+    // return null;
 };
 
 module.exports = {

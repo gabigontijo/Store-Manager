@@ -22,7 +22,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-02-14T22:21:57.503Z",
-    "modified": "2023-02-15T18:06:28.614Z",
+    "modified": "2023-02-16T17:45:34.476Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -32,7 +32,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 3,\n    \"quantity\": 10\n  },\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  }\n]  ",
       "form": []
     },
     "tests": []
