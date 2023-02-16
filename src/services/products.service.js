@@ -2,7 +2,7 @@ const { productsModels } = require('../models');
 
 const getAllProducts = async () => {
   const allProducts = await productsModels.getAll();
-  console.log(allProducts);
+  // console.log(allProducts);
 
   return { type: null, message: allProducts };
 };
@@ -26,9 +26,10 @@ const updateById = async (id, body) => {
   if (!hasProduct.length) {
     return { type: 404, message: 'Product not found' };
   }
-  
-    await productsModels.updateById(id, body);
-    return { type: null, message: hasProduct[0] };
+
+  await productsModels.updateById(id, body); 
+   const getProductId = await productsModels.getById(id);
+    return { type: null, message: getProductId[0] };
 };
 
 module.exports = {

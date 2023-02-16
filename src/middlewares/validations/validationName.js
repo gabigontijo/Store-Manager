@@ -4,7 +4,7 @@ const validationName = (req, res, next) => {
   const { name } = req.body;
   const errorName = nameSchema.validate(name);
   const errorSize = nameSchemaSize.validate(name);
-  console.log(errorSize);
+  // console.log(errorSize);
 
   if (errorName.error) return res.status(400).json({ message: '"name" is required' });
   if (errorSize.error) {
