@@ -30,11 +30,20 @@ const updateProductById = async (req, res) => {
   const { id } = req.params;
   const { body } = req;
 
-  const { type, message } = await productsServices.updateById(id, body);
+  const { type, message } = await productsServices.updateById(+id, body);
 
   if (type) return res.status(type).json({ message: 'Product not found' });
 
   return res.status(200).json(message);
+};
+
+const removeProduct = async (req, res) => {
+  const { id } = req.params;
+
+  const { type } = await productsServices.remove(+id);
+  if (type) return res.status(type).json({ message: 'Product not found' });
+
+  return res.status(204).send();
 };
 
 module.exports = {
@@ -42,4 +51,5 @@ module.exports = {
   getProductById,
   insertProduct,
   updateProductById,
+  removeProduct,
 };

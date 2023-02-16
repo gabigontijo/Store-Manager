@@ -27,9 +27,18 @@ const updateById = async (id, body) => {
     return { type: 404, message: 'Product not found' };
   }
 
-  await productsModels.updateById(id, body); 
+  await productsModels.updateById(id, body);
    const getProductId = await productsModels.getById(id);
     return { type: null, message: getProductId[0] };
+};
+
+const remove = async (id) => {
+  const hasProduct = await productsModels.getById(id);
+  if (!hasProduct.length) return { type: 404, message: 'Product not found' };
+
+  await productsModels.remove(id);
+
+  return { type: null, message: '' };
 };
 
 module.exports = {
@@ -37,4 +46,5 @@ module.exports = {
   getProductById,
   insertProduct,
   updateById,
+  remove,
 };
