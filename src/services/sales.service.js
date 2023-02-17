@@ -28,8 +28,18 @@ const getSaleById = async (id) => {
   return { type: null, message: camelize(saleList) };
 };
 
+const remove = async (id) => {
+  const hasProduct = await salesModels.getSaleById(id);
+  if (!hasProduct.length) return { type: 404, message: 'Sale not found' };
+
+  await salesModels.remove(id);
+
+  return { type: null, message: '' };
+};
+
 module.exports = {
   insertProductSale,
   getAllSales,
   getSaleById,
+  remove,
 };
