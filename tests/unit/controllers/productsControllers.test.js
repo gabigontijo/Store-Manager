@@ -216,6 +216,7 @@ describe('Teste de unidade do productsController', function () {
     });
   });
 
+
   afterEach(function () {
     sinon.restore();
   });

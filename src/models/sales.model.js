@@ -14,13 +14,14 @@ const insertProduct = async (product) => {
     'INSERT INTO StoreManager.sales (date) VALUES (NOW())',
   );
   const values = [];
+  console.log('xxxxxxxxxxxxxxxxxxxxxx', sale);
   product.map(async (item) => {
     values.push([sale.insertId, item.productId, item.quantity]);
   });
   await connection.query(
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?',
     [values],
-    
+
   );
   return sale.insertId;
 };
@@ -32,7 +33,8 @@ const getAllSales = async () => {
      LEFT JOIN StoreManager.sales AS s
      on sp.sale_id = s.id
      ORDER BY sp.sale_id, sp.product_id`,
-  );
+   );
+
   return result;
 };
 
@@ -44,7 +46,7 @@ const getSaleById = async (id) => {
     on sp.sale_id = s.id
     WHERE sp.sale_id = ?`,
     [id],
-  );
+ );
   return result;
 };
 
@@ -70,10 +72,7 @@ const updateById = async (id, body) => {
   await connection.query(
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?',
     [values],
-    (err) => {
-      if (err) throw err;
-    },
-  );
+      );
   return body;
 };
 
