@@ -42,7 +42,6 @@ const remove = async (id) => {
 };
 
 const getSearch = async (q) => {
-  console.log('...................', q);
   const allProducts = await productsModels.getAll();
   const filter = allProducts.filter((product) => product.name.includes(q));
   if (filter.length === 0) return { type: null, message: allProducts };

@@ -21,16 +21,6 @@ describe('Verificando service dos produtos', function () {
   });
 
   describe('busca de um produto', function () {
-    // it('retorna um erro caso receba um ID inválido', async function () {
-    //   // arrange: Especificamente nesse it não temos um arranjo pois nesse fluxo o model não é chamado!
-
-    //   // act
-    //   const result = await passengerService.findById('a');
-
-    //   // assert
-    //   expect(result.type).to.equal('INVALID_VALUE');
-    //   expect(result.message).to.equal('"id" must be a number');
-    // });
 
     it('retorna um erro caso o produto não exista', async function () {
       // arrange
@@ -124,6 +114,34 @@ describe('Verificando service dos produtos', function () {
       sinon.stub(productsModels, 'getById').resolves([]);
 
       const response = await productsServices.remove(999);
+
+      expect(response).to.be.deep.equal(result);
+    });
+  });
+   describe('Testa a camada service para a função "getSearch"', function () {
+     it('Faz a busca de um produto pelo name com resultado', async function () {
+        const search = [
+        {
+          "id": 1,
+          "name": "Martelo de Thor"
+          }
+      ]
+      const result = { type: null, message: search };
+      const q = 'Martelo';
+       sinon.stub(productsModels, 'getAll').resolves(allProducts);
+
+       const response = await productsServices.getSearch(q);
+
+      expect(response).to.be.deep.equal(result);
+    });
+
+    it('Faz a busca de um produto pelo name sem resultado e devolce todos da lista', async function () {
+      const result = { type: null, message: allProducts };
+      const q = 'Brazil';
+
+      sinon.stub(productsModels, 'getAll').resolves(allProducts);
+
+      const response = await productsServices.getSearch(q);
 
       expect(response).to.be.deep.equal(result);
     });

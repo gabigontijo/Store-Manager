@@ -4,9 +4,7 @@ const getProductsSaleId = async (idList) => {
   const [productId] = await connection.query(
     'SELECT id FROM StoreManager.products WHERE id IN (?)',
     [idList],
-    (err) => {
-      if (err) throw err;
-    },
+
   );
   return productId;
 };
@@ -22,9 +20,7 @@ const insertProduct = async (product) => {
   await connection.query(
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?',
     [values],
-    (err) => {
-      if (err) throw err;
-    },
+    
   );
   return sale.insertId;
 };
