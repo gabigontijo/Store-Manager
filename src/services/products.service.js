@@ -41,10 +41,19 @@ const remove = async (id) => {
   return { type: null, message: '' };
 };
 
+const getSearch = async (q) => {
+  console.log('...................', q);
+  const allProducts = await productsModels.getAll();
+  const filter = allProducts.filter((product) => product.name.includes(q));
+  if (filter.length === 0) return { type: null, message: allProducts };
+   return { type: null, message: filter };
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   insertProduct,
   updateById,
   remove,
+  getSearch,
 };
