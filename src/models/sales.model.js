@@ -59,10 +59,34 @@ const remove = async (id) => {
   );
 };
 
+const removeSaleProducts = async (id) => {
+  await connection.execute(
+    'DELETE FROM StoreManager.sales_products WHERE sale_id = (?)',
+    [id],
+  );
+};
+
+const updateById = async (id, body) => {
+  const values = [];
+  body.map(async (item) => {
+    values.push([id, item.productId, item.quantity]);
+  });
+  await connection.query(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ?',
+    [values],
+    (err) => {
+      if (err) throw err;
+    },
+  );
+  return body;
+};
+
 module.exports = {
   getProductsSaleId,
   insertProduct,
   getAllSales,
   getSaleById,
   remove,
+  removeSaleProducts,
+  updateById,
 };

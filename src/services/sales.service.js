@@ -37,9 +37,26 @@ const remove = async (id) => {
   return { type: null, message: '' };
 };
 
+const updateBySaleId = async (id, body) => {
+  const hasProduct = await salesModels.getSaleById(id);
+  if (!hasProduct.length) return { type: 404, message: 'Sale not found' };
+  const validate = await validateProductId(body);
+  if (validate) {
+    await salesModels.removeSaleProducts(id);
+    const salesUptd = await salesModels.updateById(id, body);
+    const result = {
+      saleId: id,
+      itemsUpdated: salesUptd,
+    };
+    return { type: null, message: result };
+  }
+ return { type: 404, message: 'Product not found' };
+};
+
 module.exports = {
   insertProductSale,
   getAllSales,
   getSaleById,
   remove,
+  updateBySaleId,
 };
