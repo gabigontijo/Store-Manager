@@ -22,11 +22,17 @@ const insertProduct = async ({ name }) => {
  );
 };
 
-const updateById = async (id, { name }) => {
+const updateById = async (id, body) => {
+  const { name } = body;
   await connection.execute(
     'UPDATE StoreManager.products SET name = (?) WHERE id = (?)',
     [name, id],
   );
+  const [result] = await connection.execute(
+    'SELECT * FROM  StoreManager.products WHERE id = (?)',
+    [id],
+  );
+  return result;
 };
 
 const remove = async (id) => {

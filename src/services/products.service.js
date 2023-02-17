@@ -27,9 +27,9 @@ const updateById = async (id, body) => {
     return { type: 404, message: 'Product not found' };
   }
 
-  await productsModels.updateById(id, body);
-   const getProductId = await productsModels.getById(id);
-    return { type: null, message: getProductId[0] };
+  const result = await productsModels.updateById(id, body);
+
+    return { type: null, message: result[0] };
 };
 
 const remove = async (id) => {

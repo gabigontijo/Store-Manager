@@ -131,6 +131,75 @@ describe('Teste de unidade do productsController', function () {
       expect(res.status).to.have.been.calledWith(404);
       expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
     });
+    describe('Testa a camada controller para a função "updateProductById"', function () {
+    it('Faz a atualização de uma pessoa pelo id', async function () {
+      const req = { params: { id: 2 } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const expectUpdate = {
+      "id": 2,
+      "name": "Martelo do Batman"
+}
+
+      sinon.stub(productsServices, 'updateById').resolves({ type: null, message: expectUpdate });
+
+      await productsControllers.updateProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(expectUpdate);
+    });
+
+    it('Testa fazer a atualização de uma pessoa pelo id sem sucesso', async function () {
+      const req = { params: { id: 999 } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsServices, 'updateById').resolves({ type: 404, message: 'Essa pessoa não existe' });
+
+      await productsControllers.updateProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: 'Essa pessoa não existe' });
+    });
+  });
+
+
+  describe('Testa a camada controller para a função "removeProduct"', function () {
+    it('Faz a remoção de uma pessoa através do id', async function () {
+      const req = { params: { id: 1 } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.send = sinon.stub().returns();
+
+      sinon.stub(productsServices, 'remove').resolves({ type: null, message: '' });
+
+      await productsControllers.removeProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(204);
+
+    });
+
+    it('Faz a remoção de uma pessoa através do id inexistente', async function () {
+      const req = { params: { id: 999 } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsServices, 'remove').resolves({ type: 404, message: 'Essa pessoa não existe' });
+
+      await productsControllers.removeProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: 'Essa pessoa não existe' });
+    });
+  });
   });
   afterEach(function () {
     sinon.restore();

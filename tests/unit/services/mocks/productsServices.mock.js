@@ -30,9 +30,18 @@ const insertProduct = {
 }
 
 
+const getProduct = [
+  {
+    "id": 1,
+    "name": "Martelo de Thor"
+  }
+];
+
+
 module.exports = {
   allProducts,
   productId,
   insertProduct,
   insertedProduct,
+  getProduct,
 }

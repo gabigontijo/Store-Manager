@@ -49,7 +49,32 @@ describe('Testes de unidade do model de produtos', function () {
 
       const response = await productsModels.insertProduct(insertProduct);
       expect(response).to.be.equal(undefined);
+  });
+  describe('Testa a camada model para a função "updateById"', function () {
+    it('Faz a atualização de um produto pelo id', async function () {
+      const expected =
+       [{
+         "id": 1,
+         "name": "Martelo de Thor"
+        }];
+      sinon.stub(connection, 'execute').resolves([expected]);
+
+      const id = 1;
+      const body = { name: 'Martelo de Thor' }
+      const response = await productsModels.updateById(id, body );
+      expect(response).to.be.equal(expected);
     });
+  });
+
+  describe('Testa a camada model para a função "remove"', function () {
+    it('Faz a remoção de um produto com sucesso', async function () {
+      sinon.stub(connection, 'execute').resolves(undefined);
+      const id = 1;
+      const response = await productsModels.remove(id);
+
+      expect(response).to.be.equal(undefined);
+    });
+  });
 
   afterEach(function () {
     sinon.restore();
