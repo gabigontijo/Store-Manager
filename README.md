@@ -63,5 +63,5 @@ npm start
   npm run test:mocha
 ```
 
-## :dart: Status do projeto/ Project status
+## :dart: Project status / Status do projeto
 - Finished project/  Projeto finalizado.
