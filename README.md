@@ -17,7 +17,7 @@
 
 ## :wrench: Technologies/ Tecnologias
 * Node;
-* Typescript;
+* Express;
 * RESTful API;
 * Docker;
 * MySQL;
