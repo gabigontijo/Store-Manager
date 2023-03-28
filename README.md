@@ -1,6 +1,6 @@
 <h1 align="center">:file_cabinet: Store Manager</h1>
 
-## :memo: Description/ Descrição/
+## :memo: Description/ Descrição
  RESTful API application using the MVC (model-service-controller) architecture for a sales management system in dropshipping format/ Aplicação API RESTful utilizando a arquitetura MVC (model-service-controller)para um sistema de gerenciamento de vendas no formato dropshipping.
 
 ## :books: Functionalities/  Funcionalidades
@@ -15,7 +15,7 @@
 ![DER](./images/erStoreManager.png)
 </details>
 
-## :wrench: Tecnologias/ Technologies
+## :wrench: Technologies/ Tecnologias
 * Node;
 * Typescript;
 * RESTful API;
