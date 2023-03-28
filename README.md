@@ -1,10 +1,9 @@
 <h1 align="center">:file_cabinet: Store Manager</h1>
 
-## :memo: Descrição/ Description
+## :memo: Description/ Descrição/
  RESTful API application using the MVC (model-service-controller) architecture for a sales management system in dropshipping format/ Aplicação API RESTful utilizando a arquitetura MVC (model-service-controller)para um sistema de gerenciamento de vendas no formato dropshipping.
 
-API a ser construída é um sistema de gerenciamento de vendas no formato dropshipping em que será possível criar, visualizar, deletar e atualizar produtos e vendas. Você deverá utilizar o banco de dados MySQL para a gestão de dados. Além disso, a API deve ser RESTful.
-## :books: Funcionalidades/ Functionalities
+## :books: Functionalities/  Funcionalidades
 * <b>CRUD API</b>: (Create, Read, Update e Delete) of products and sales
 * <b>Data storage</b> Relational database MySQL.
 * <b>Unit tests</b> With mocha, chai e sinon.
@@ -26,7 +25,7 @@ API a ser construída é um sistema de gerenciamento de vendas no formato dropsh
 * Chai
 * Sinon
 
-## :rocket: Rodando o projeto/ Running the project
+## :rocket: Running the project/ Rodando o projeto
 * To run the repository it is necessary to clone it, give the following command to start the project:
 - Para rodar o repositório é necessário clonar o mesmo, dar o seguinte comando para iniciar o projeto:
 ```
@@ -58,11 +57,11 @@ npm start
 ```
   npm run debug
 ```
-Run the unit tests
+- Run the unit tests
 
 ```
   npm run test:mocha
 ```
 
 ## :dart: Status do projeto/ Project status
-- Finished project/  Projeto finalizado/.
+- Finished project/  Projeto finalizado.
